@@ -37,7 +37,7 @@ def temp(update, context):
         weather_result = requests.get(url)
         weather_result_data = weather_result.json()
         
-        update.message.reply_text("The temperature in {} is now {} °C".format(city, weather_result_data['main']['temp']))
+        update.message.reply_text("Right now, the temperature in {} is {} °C".format(city, weather_result_data['main']['temp']))
     except:
         update.message.reply_text('Error: Unrecognized city!')
 
