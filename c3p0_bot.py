@@ -39,7 +39,7 @@ def temp(update, context):
         
         update.message.reply_text("The temperature in {} is now {} °C".format(city, weather_result_data['main']['temp']))
     except:
-        update.message.reply_text('Error, city unrecognized!')
+        update.message.reply_text('Error, unrecognized city!')
 
 def main():
     """Start the bot."""
