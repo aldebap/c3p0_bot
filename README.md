@@ -1,4 +1,4 @@
-# C3P0 Telegram Bot.
+# C3P0 Telegram Bot
 
 This project implements a Telegram bot which can be either used in groups or private chats.
 
@@ -10,7 +10,7 @@ You can find this bot by its official name: @fabiogoma_c3p0_bot
 
 **Disclaimer:** This telegram bot is a simple demo, built by a hobbyist, non-developer, non-native english speaker. That said be aware: typos and non conventional programming paradigms might occur. PRs are always welcome.
 
-## Setting up your own development environment.
+## Setting up your own development environment
 
 This bot was built in [Python](http://python.org/), the source code is hosted here on [GitHub](https://github.com/) and a running instance is hosted by [Heroku](https://www.heroku.com/).
 
