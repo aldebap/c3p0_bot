@@ -23,14 +23,14 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 def temp(update, context):
+    city = ''
     try:
-        city = ''
         if len(context.args) > 1:
             space = ' '
-            city = space.join(context)
+            city = space.join(context.args)
         else:
             city = context.args[0]
-
+        
         key = os.getenv('OPENWEATHER_API_KEY')
 
         url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=metric'.format(city, key)
@@ -40,7 +40,7 @@ def temp(update, context):
         
         update.message.reply_text("Right now, the temperature in {} is {} °C".format(city, weather_result_data['main']['temp']))
     except:
-        update.message.reply_text('Error: Unrecognized city!')
+        update.message.reply_text('Unrecognized city: {}'.format(city))
 
 def main():
     """Start the bot."""
