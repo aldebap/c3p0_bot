@@ -26,7 +26,8 @@ def temp(update, context):
     try:
         city = ''
         if len(context.args) > 1:
-            city = context.args[0] + ' ' + context.args[1]
+            space = ' '
+            city = space.join(context)
         else:
             city = context.args[0]
 
