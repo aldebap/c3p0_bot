@@ -9,14 +9,11 @@
 import unittest
 
 from telegram.ext import CommandHandler
-#from telegram.ext import Filters
-#from telegram.ext import MessageHandler
+from telegram.utils.request import Request
 from telegram.ext import Updater
 
 from ptbtest import MessageGenerator
 from ptbtest import Mockbot
-#from ptbtest import UserGenerator
-#from ptbtest import updategenerator
 
 import c3p0_bot
 
@@ -30,9 +27,10 @@ class test_c3p0_bot( unittest.TestCase ):
     def test_help(self):
         #   create all required mock objects
         self.testBot = Mockbot()
+        self.testBot.request = Request()
+        self.testBot.defaults = {}
         self.testMsgGenerator = MessageGenerator(self.testBot)
-        self.testUpdater = Updater(bot=self.testBot, use_context=True)
-        #self.testUpdater = updategenerator.update(bot=self.testBot)
+        self.testUpdater = Updater(bot=self.testBot)
 
         #   add a handler for c3po help command
         self.testUpdater.dispatcher.add_handler(CommandHandler("help", help))
@@ -44,9 +42,11 @@ class test_c3p0_bot( unittest.TestCase ):
 
         #   make sure only one message was sent to the testBot, and that is the expected one
         self.assertEqual(len(self.testBot.sent_messages), 1)
+        #self.assertEqual(len(self.testBot._updates), 1)
         sentMsg = self.testBot.sent_messages[0]
-        self.assertEqual(senMsg['method'], "sendMessage")
-        self.assertEqual(senMsg['text'], "Help!")
+        #sentMsg = self.testBot._updates[0]
+        self.assertEqual(sentMsg['method'], "sendMessage")
+        self.assertEqual(sentMsg['text'], "Help!")
 
         #   stop the testBot
         self.testUpdater.stop()
