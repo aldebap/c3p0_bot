@@ -9,7 +9,6 @@
 import unittest
 
 from telegram.ext import CommandHandler
-from telegram.utils.request import Request
 from telegram.ext import Updater
 
 from ptbtest import MessageGenerator
@@ -25,18 +24,18 @@ class test_c3p0_bot( unittest.TestCase ):
 
     #   test help - 01. handle help command
     def test_help(self):
-        #   create all required mock objects
+        #   create the mock bot object
         self.testBot = Mockbot()
-        self.testBot.request = Request()
-        self.testBot.defaults = {}
-        self.testMsgGenerator = MessageGenerator(self.testBot)
-        self.testUpdater = Updater(bot=self.testBot)
 
         #   add a handler for c3po help command
+        self.testUpdater = Updater(bot=self.testBot)
+
         self.testUpdater.dispatcher.add_handler(CommandHandler("help", help))
         self.testUpdater.start_polling()
 
         #   create a help message and send it to testBot
+        self.testMsgGenerator = MessageGenerator(self.testBot)
+
         helpMsg = self.testMsgGenerator.get_message(text="/help")
         self.testBot.insertUpdate( helpMsg )
 

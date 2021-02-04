@@ -2,5 +2,5 @@ secret.txt
 venv/
 images/*
 c3po/
-src/python/main/__pycache__
-src/python/test/__pycache__
+src/python/main/__pycache__/
+src/python/test/__pycache__/
